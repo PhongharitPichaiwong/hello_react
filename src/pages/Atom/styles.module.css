@@ -1,0 +1,105 @@
+.wrapper {
+  background: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+
+  .headerContainer {
+    display: flex;
+    flex: 0.3;
+    background-color: white;
+    justify-content: space-between;
+    padding: 0px 16px;
+  }
+
+  .headerLeft {
+    display: flex;
+    flex: 0.3;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .headerRightContainer {
+    display: flex;
+    flex: 0.3;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .loginButton {
+    width: 94.25px;
+    height: 36px;
+    background-color: var(--primary-button-color);
+    border-color: orange;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    margin-right: 4px;
+  }
+
+  .logOutButton {
+    width: 94.25px;
+    height: 36px;
+    background-color: var(--secondary-button-color);
+    border-radius: 5px;
+    border-color: orange;
+    color: orange;
+    text-align: center;
+  }
+
+  .estateContainer {
+  }
+
+  .bodyContainer {
+    display: flex;
+    flex: 1;
+    background-color: blue;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sideBar {
+    width: 240px;
+    display: flex;
+    background-color: var(--primary-color);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logoContainer {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    margin-right: 2px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo {
+    width: 64px;
+    height: 64px;
+  }
+
+  .estateLogo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .textContainer {
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
+.container {
+  color: green;
+}
+
+@media (max-width: 719px) {
+  .sideBar {
+    background-color: aqua !important;
+    width: 100vw !important;
+    height: 15vh;
+  }
+}
