@@ -3,8 +3,9 @@ import styles from './styles.module.css';
 
 /**
  * TODO:
- * 1. Create a any sub component for this page inside src/components/Atom/* folder
- * 2. Add new/update any css module file inside src/components/Atom/styles.module.css
+ * 1. Ref: https://kankocho.jp/ from this website, create a similar page (focus on left sidebar behavior on Big and Small screen)
+ * 2. Create a any sub component for this page inside src/components/Mike/* folder
+ * 3. Add new/update any css module file inside src/components/Mike/styles.module.css
  */
 function Atom() {
   return (
