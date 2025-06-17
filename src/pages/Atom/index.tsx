@@ -1,10 +1,18 @@
 import logo from '../../assets/images/logo.svg';
 import styles from './styles.module.css';
 import { useAtomProducts } from '../../hooks/useAtomProducts';
+import { AtomProduct } from '../../types/atomProduct';
+import { makeProductCard } from './components/product/product';
 
 function Atom() {
-  const { categories, isLoading, error, activeCategory, toggleCategory } =
-    useAtomProducts();
+  const {
+    categories,
+    isLoading,
+    error,
+    activeCategory,
+    toggleCategory,
+    products,
+  } = useAtomProducts();
 
   return (
     <div className={styles.wrapper}>
@@ -15,6 +23,7 @@ function Atom() {
         error={error}
         activeCategory={activeCategory}
         toggleCategory={toggleCategory}
+        products={products}
       />
       <Footer />
     </div>
@@ -51,14 +60,15 @@ function Body({
   error,
   activeCategory,
   toggleCategory,
+  products,
 }: {
   categories: any;
   isLoading: boolean;
   error: any;
   activeCategory: string | null;
   toggleCategory: (category: string) => void;
+  products: AtomProduct[];
 }) {
-  console.log(categories);
   const estateButtonData = {
     label: 'Estate',
     style: styles.sideBarButton,
@@ -118,7 +128,15 @@ function Body({
           </div>
         </div>
       </div>
-      <div className={styles.bodyContainer}>Body 2</div>
+      <div className={styles.bodyContainer}>
+        {products.length === 0 ? (
+          <div>No products found</div>
+        ) : (
+          <div className={styles.productGrid}>
+            {products.map((product: any) => makeProductCard(product))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

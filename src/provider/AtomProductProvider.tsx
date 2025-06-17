@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { productService } from '../services/atom/productService';
+import { AtomProduct } from '../types/atomProduct';
 
 export interface AtomProductContextType {
   categories: string[];
@@ -8,6 +9,7 @@ export interface AtomProductContextType {
   toggleCategory: (category: string) => void;
   error: string | null;
   clearError: () => void;
+  products: AtomProduct[];
 }
 
 export const AtomProductContext = createContext<
@@ -19,7 +21,7 @@ export const AtomProductProvider = ({ children }: { children: ReactNode }) => {
   const [categories, setCategories] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  // const [products, setProducts] = useState<string[] | null>(null);
+  const [products, setProducts] = useState<AtomProduct[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,21 +43,22 @@ export const AtomProductProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const toggleCategory = async (cat: string) => {
-    // get products outside the state setter
-    // URL setting outside
-    setActiveCategory(prev => {
-      const next = prev === cat ? null : cat;
-      const url = new URL(window.location.href);
-      if (next) {
-        url.searchParams.set('category', next);
-      } else {
-        url.searchParams.delete('category');
-      }
+    const newCat = activeCategory === cat ? null : cat;
+    const url = new URL(window.location.href);
 
-      window.history.pushState({}, '', url.toString());
+    let products: AtomProduct[] = [];
 
-      return next;
-    });
+    if (newCat) {
+      url.searchParams.set('category', newCat);
+      products = await productService.getProductByCategory(newCat);
+    } else {
+      url.searchParams.delete('category');
+    }
+    window.history.replaceState({}, '', url.toString());
+
+    console.log(`Products: ${products}`);
+    setActiveCategory(newCat);
+    setProducts(products);
   };
 
   const value: AtomProductContextType = {
@@ -65,6 +68,7 @@ export const AtomProductProvider = ({ children }: { children: ReactNode }) => {
     toggleCategory,
     error,
     clearError,
+    products,
   };
 
   return (

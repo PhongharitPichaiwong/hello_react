@@ -74,7 +74,22 @@
     flex: 1;
     background-color: ghostwhite;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    /* padding: 24px; */
+    padding-top: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+    height: 75.5vh;
+    overflow-y: auto;
+  }
+
+  .productGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    max-width: 1200px;
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .sideBarContainer {
@@ -197,16 +212,4 @@
       width: auto !important;
     }
   }
-}
-
-.container {
-  color: green;
-}
-
-.bodyContainer {
-  display: flex;
-  flex: 1;
-  background-color: salmon;
-  justify-content: center;
-  align-items: center;
 }
