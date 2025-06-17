@@ -1,0 +1,38 @@
+.sideBarCategoryContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: white;
+  width: 200px;
+  height: 50%;
+  overflow-y: auto;
+  margin-top: 16px;
+}
+
+.sideBarCategoryList {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: white;
+  width: 200px;
+  height: 100%;
+  overflow-y: auto;
+  margin-top: 4px;
+  margin-left: 8px;
+}
+
+.sideBarCategoryLabel {
+  font-size: 24px;
+  font-weight: bold;
+  background-color: slategray;
+  width: 100%;
+  padding-left: 8px;
+  color: white;
+}
+
+.sideBarCategoryItem {
+  font-size: 14px;
+  margin-bottom: 4px;
+}

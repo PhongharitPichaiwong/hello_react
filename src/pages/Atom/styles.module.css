@@ -69,38 +69,6 @@
     text-align: center;
   }
 
-  .bodyContainer {
-    display: flex;
-    flex: 1;
-    background-color: ghostwhite;
-    justify-content: center;
-    align-items: flex-start;
-    /* padding: 24px; */
-    padding-top: 24px;
-    padding-left: 24px;
-    padding-right: 24px;
-    height: 75.5vh;
-    overflow-y: auto;
-  }
-
-  .productGrid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-    max-width: 1200px;
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .sideBarContainer {
-    display: flex;
-    flex-direction: column;
-    width: 240px;
-    height: 100%;
-    justify-content: flex-start;
-    align-items: center;
-  }
-
   .logoContainer {
     display: flex;
     width: 50px;
@@ -115,101 +83,8 @@
     height: 64px;
   }
 
-  .sideBarButton {
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 8px;
-    width: 200px;
-    height: 60px;
-    border-radius: 4px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease;
-  }
-
-  .sideBarButton:hover {
-    background-color: orange;
-    color: white;
-    transform: translateY(-4px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-
-  .sideBarLogo {
-    width: 48px;
-    height: 48px;
-  }
-
-  .sideBarTextContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .sideBarCategoryContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    background-color: white;
-    width: 200px;
-    height: 50%;
-    overflow-y: auto;
-    margin-top: 16px;
-  }
-
-  .sideBarCategoryList {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    background-color: white;
-    width: 200px;
-    height: 100%;
-    overflow-y: auto;
-    margin-top: 4px;
-    margin-left: 8px;
-  }
-
-  .sideBarCategoryLabel {
-    font-size: 24px;
-    font-weight: bold;
-    background-color: slategray;
-    width: 100%;
-    padding-left: 8px;
-    color: white;
-  }
-
-  .sideBarCategoryItem {
-    font-size: 14px;
-    margin-bottom: 4px;
-  }
-
   .textContainer {
-    font-size: 24px;
+    font-size: 1.5vw;
     font-weight: bold;
-  }
-
-  /* Mobile View */
-  @media (max-width: 719px) {
-    .bodyContainer {
-      flex-direction: column !important;
-      background-color: skyblue !important;
-      width: 100vw !important;
-      height: 85vh !important;
-    }
-
-    .sideBarContainer {
-      flex-direction: row !important;
-      background-color: aqua !important;
-      width: 100vw !important;
-      height: 15vh !important;
-    }
-
-    .sideBarButton {
-      flex: 1 !important;
-      width: auto !important;
-    }
   }
 }

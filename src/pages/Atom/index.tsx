@@ -1,7 +1,6 @@
 import logo from '../../assets/images/logo.svg';
 import { useAtomProducts } from '../../hooks/useAtomProducts';
-import { AtomProduct } from '../../types/atomProduct';
-import { makeProductCard } from './components/product/product';
+import { Body } from './components/Body/Body';
 import styles from './styles.module.css';
 
 function Atom() {
@@ -49,93 +48,6 @@ function Header() {
       </div>
       <div className={styles.headerBottom}>
         {/* Place Holder For Some Buttons??? */}
-      </div>
-    </div>
-  );
-}
-
-function Body({
-  categories,
-  isLoading,
-  error,
-  activeCategory,
-  toggleCategory,
-  products,
-}: {
-  categories: string[];
-  isLoading: boolean;
-  error: string | null;
-  activeCategory: string | null;
-  toggleCategory: (category: string) => void;
-  products: AtomProduct[];
-}) {
-  const estateButtonData = {
-    label: 'Estate',
-    style: styles.sideBarButton,
-    image: {
-      src: logo,
-      alt: 'Estate',
-      style: styles.sideBarLogo,
-    },
-    subText: 'Estate',
-  };
-  const categoryButtonData = {
-    label: 'Category',
-    style: styles.sideBarButton,
-    image: {
-      src: logo,
-      alt: 'Category',
-      style: styles.sideBarLogo,
-    },
-    subText: 'Category',
-  };
-  const generalButtonData = {
-    label: 'General',
-    style: styles.sideBarButton,
-    image: {
-      src: logo,
-      alt: 'General',
-      style: styles.sideBarLogo,
-    },
-    subText: 'General',
-  };
-
-  return (
-    <div className={styles.bodyContainer}>
-      <div className={styles.sideBarContainer}>
-        {makeButton(estateButtonData)}
-        {makeButton(categoryButtonData)}
-        {makeButton(generalButtonData)}
-        <div className={styles.sideBarCategoryContainer}>
-          <div className={styles.sideBarCategoryLabel}>Categories</div>
-          <div className={styles.sideBarCategoryList}>
-            {isLoading && <div>Loading...</div>}
-            {error && <div style={{ color: 'red' }}>{error}</div>}
-            {!isLoading &&
-              // UseMemo so that we don't need to render 24 things all the time.
-              categories.map((cat: string) => (
-                <label key={cat} className={styles.categoryItem}>
-                  <input
-                    type="checkbox"
-                    value={cat}
-                    id={cat}
-                    checked={activeCategory === cat}
-                    onChange={() => toggleCategory(cat)}
-                  />
-                  {cat}
-                </label>
-              ))}
-          </div>
-        </div>
-      </div>
-      <div className={styles.bodyContainer}>
-        {products.length === 0 ? (
-          <div>No products found</div>
-        ) : (
-          <div className={styles.productGrid}>
-            {products.map((product: AtomProduct) => makeProductCard(product))}
-          </div>
-        )}
       </div>
     </div>
   );
