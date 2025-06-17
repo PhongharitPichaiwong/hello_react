@@ -14,12 +14,14 @@ interface ProductProviderProps {
 
 export const ProductProvider = ({
   children,
-  defaultCategory = 'smartphones',
+  defaultCategory = 'mobile',
 }: ProductProviderProps) => {
-  const [categories, setCategories] = useState<string[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+
+  const [categories, setCategories] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const fetchCategories = async (): Promise<void> => {
@@ -46,6 +48,7 @@ export const ProductProvider = ({
     if (categories.length === 0) return;
 
     const categoryFromUrl = searchParams.get('category');
+
     const categoryToSelect = categoryFromUrl || defaultCategory;
 
     if (categories.includes(categoryToSelect)) {

@@ -1,10 +1,11 @@
-const API_BASE_URL = 'https://dummyjson.com/products';
-const CAT_LIST = 'category-list';
+const API_BASE_URL = 'https://dummyjson.com';
+const CATEGORY_LIST = 'products/category-list';
+const CATEGORY = 'products/category';
 
 class ProductionService {
-  async getAll(): Promise<any> {
+  async getProductsByCategory(name: string): Promise<any[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}`, {
+      const response = await fetch(`${API_BASE_URL}/${CATEGORY}/${name}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -23,9 +24,9 @@ class ProductionService {
     }
   }
 
-  async getProductionCategoryList(): Promise<any> {
+  async getProductionCategoryList(): Promise<any[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}/${CAT_LIST}`, {
+      const response = await fetch(`${API_BASE_URL}/${CATEGORY_LIST}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
