@@ -1,5 +1,5 @@
 .wrapper {
-  background: var(--primary-color);
+  background: white;
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -9,25 +9,29 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 110px;
-    background-color: rgb(255, 242, 101);
-    padding: 0px 16px;
+    padding: 0px 0px;
   }
 
   .headerTop {
     display: flex;
-    flex: 0.5;
+    /* flex: 0.5; */
     justify-content: space-between;
     align-items: center;
-    background-color: red;
+    background-color: white;
+    padding: 0px 24px;
+    height: 60px;
   }
 
   .headerBottom {
-    display: flex;
-    flex: 0.5;
-    justify-content: space-between;
-    align-items: center;
-    background-color: green;
+    /* display: flex; */
+    /* flex: 1; */
+    height: 60px;
+    background-color: white;
+    border: silver;
+    border-width: 1px;
+    border-style: solid;
+    border-left: none;
+    border-right: none;
   }
 
   .headerLeft {
@@ -68,7 +72,7 @@
   .bodyContainer {
     display: flex;
     flex: 1;
-    background-color: blue;
+    background-color: ghostwhite;
     justify-content: center;
     align-items: center;
   }
@@ -78,7 +82,6 @@
     flex-direction: column;
     width: 240px;
     height: 100%;
-    background-color: var(--primary-color);
     justify-content: flex-start;
     align-items: center;
   }
@@ -98,15 +101,23 @@
   }
 
   .sideBarButton {
-    background-color: var(--secondary-color);
     color: black;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 8px;
-    margin-right: 8px;
+    margin: 8px;
     width: 200px;
     height: 60px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+  }
+
+  .sideBarButton:hover {
+    background-color: orange;
+    color: white;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
 
   .sideBarLogo {
@@ -119,6 +130,45 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .sideBarCategoryContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: white;
+    width: 200px;
+    height: 50%;
+    overflow-y: auto;
+    margin-top: 16px;
+  }
+
+  .sideBarCategoryList {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: white;
+    width: 200px;
+    height: 100%;
+    overflow-y: auto;
+    margin-top: 4px;
+    margin-left: 8px;
+  }
+
+  .sideBarCategoryLabel {
+    font-size: 24px;
+    font-weight: bold;
+    background-color: slategray;
+    width: 100%;
+    padding-left: 8px;
+    color: white;
+  }
+
+  .sideBarCategoryItem {
+    font-size: 14px;
+    margin-bottom: 4px;
   }
 
   .textContainer {

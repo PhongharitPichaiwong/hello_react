@@ -1,3 +1,4 @@
+export { default as CategorySidebar } from './Product/CategorySidebar';
 export { AuthToggle } from './shared/AuthToggle';
 export { Button } from './shared/Button';
 export { Layout } from './shared/Layout';

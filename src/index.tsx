@@ -5,6 +5,7 @@ import App from './App';
 import { AtomProductProvider } from './provider/AtomProductProvider';
 import { AuthProvider } from './provider/AuthProvider';
 import { MikeProductProvider } from './provider/MikeProductProvider';
+import { ProductProvider } from './provider/ProductProvider';
 import { ThemeProvider } from './provider/ThemeProvider';
 import reportWebVitals from './reportWebVitals';
 
@@ -16,11 +17,13 @@ root.render(
     <BrowserRouter>
       <ThemeProvider>
         <AuthProvider>
-          <MikeProductProvider>
-            <AtomProductProvider>
-              <App />
-            </AtomProductProvider>
-          </MikeProductProvider>
+          <ProductProvider>
+            <MikeProductProvider>
+              <AtomProductProvider>
+                <App />
+              </AtomProductProvider>
+            </MikeProductProvider>
+          </ProductProvider>
         </AuthProvider>
       </ThemeProvider>
     </BrowserRouter>

@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import logo from '../../assets/images/logo.svg';
+import { AtomProductContext } from '../../provider/AtomProductProvider';
 import styles from './styles.module.css';
 
 function Atom() {
@@ -29,7 +31,7 @@ function Header() {
         </div>
       </div>
       <div className={styles.headerBottom}>
-        Place Holder For Category Buttons.
+        {/* Place Holder For Some Buttons??? */}
       </div>
     </div>
   );
@@ -67,17 +69,36 @@ function Body() {
     subText: 'General',
   };
 
+  const context = useContext(AtomProductContext);
+  const categories = context?.categories ?? [];
+  const isLoading = context?.isLoading ?? false;
+  const error = context?.error ?? null;
+
   return (
     <div className={styles.bodyContainer}>
       <div className={styles.sideBarContainer}>
-        <div className={styles.sideBarButton}>
-          {makeButton(estateButtonData)}
-        </div>
-        <div className={styles.sideBarButton}>
-          {makeButton(categoryButtonData)}
-        </div>
-        <div className={styles.sideBarButton}>
-          {makeButton(generalButtonData)}
+        {makeButton(estateButtonData)}
+        {makeButton(categoryButtonData)}
+        {makeButton(generalButtonData)}
+        <div className={styles.sideBarCategoryContainer}>
+          <div className={styles.sideBarCategoryLabel}>Categories</div>
+          <div className={styles.sideBarCategoryList}>
+            {isLoading && <div>Loading...</div>}
+            {error && <div style={{ color: 'red' }}>{error}</div>}
+            {!isLoading &&
+              categories.map(cat => (
+                <label key={cat} className={styles.categoryItem}>
+                  <input
+                    type="checkbox"
+                    value={cat}
+                    id={cat}
+                    checked={context?.activeCategory === cat}
+                    onChange={() => context?.toggleCategory(cat)}
+                  />
+                  {cat}
+                </label>
+              ))}
+          </div>
         </div>
       </div>
       <div className={styles.bodyContainer}>Body 2</div>

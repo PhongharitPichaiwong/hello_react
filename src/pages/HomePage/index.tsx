@@ -15,6 +15,13 @@ const pages = [
       'Japanese auction platform with responsive design and CSS modules',
     emoji: '⚛️',
   },
+  {
+    url: '/products',
+    title: 'Products Page',
+    description:
+      'Browse product categories with Material-UI radio buttons and modern design',
+    emoji: '🛍️',
+  },
 ];
 
 export function HomePage() {

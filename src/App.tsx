@@ -4,16 +4,21 @@ import './global.css';
 import Atom from './pages/Atom';
 import { HomePage } from './pages/HomePage';
 import Mike from './pages/Mike';
+import Products from './pages/Products';
+import { ProductProvider } from './provider/ProductProvider';
 
 function App() {
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/mike" element={<Mike />} />
-        <Route path="/atom" element={<Atom />} />
-      </Routes>
-    </Layout>
+    <ProductProvider>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/mike" element={<Mike />} />
+          <Route path="/atom" element={<Atom />} />
+        </Routes>
+      </Layout>
+    </ProductProvider>
   );
 }
 
