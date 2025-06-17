@@ -11,7 +11,7 @@
 
 .bodyContainerMobile {
   flex-direction: column;
-  background-color: skyblue;
+  background-color: ghostwhite;
   width: 100vw;
   height: 85vh;
   justify-content: flex-start;
@@ -58,7 +58,6 @@
   width: 100%;
   margin-bottom: 16px;
   height: auto;
-  background-color: aqua;
 }
 
 .sideBarButton {
