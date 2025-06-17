@@ -11,10 +11,8 @@ class ProductService {
     return await response.json();
   }
 
-  async getProductByCategory(categoryId: string): Promise<string[]> {
-    const response = await fetch(
-      `${API_BASE_URL}${PRODUCT_BY_CAT}/${categoryId}`
-    );
+  async getProductByCategory(catName: string): Promise<string[]> {
+    const response = await fetch(`${API_BASE_URL}${PRODUCT_BY_CAT}/${catName}`);
     if (!response.ok) {
       throw new Error(
         `Failed to fetch products by category: ${response.statusText}`

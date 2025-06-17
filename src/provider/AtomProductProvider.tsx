@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { productService } from '../services/atom/productService';
 
-interface AtomProductContextType {
+export interface AtomProductContextType {
   categories: string[];
   isLoading: boolean;
   activeCategory: string | null;
@@ -19,6 +19,7 @@ export const AtomProductProvider = ({ children }: { children: ReactNode }) => {
   const [categories, setCategories] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  // const [products, setProducts] = useState<string[] | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,10 +40,21 @@ export const AtomProductProvider = ({ children }: { children: ReactNode }) => {
     setError(null);
   };
 
-  const toggleCategory = (cat: string) => {
+  const toggleCategory = async (cat: string) => {
+    // get products outside the state setter
+    // URL setting outside
     setActiveCategory(prev => {
-      if (prev === cat) return null;
-      return cat;
+      const next = prev === cat ? null : cat;
+      const url = new URL(window.location.href);
+      if (next) {
+        url.searchParams.set('category', next);
+      } else {
+        url.searchParams.delete('category');
+      }
+
+      window.history.pushState({}, '', url.toString());
+
+      return next;
     });
   };
 

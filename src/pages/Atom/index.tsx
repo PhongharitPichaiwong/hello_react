@@ -1,13 +1,21 @@
-import { useContext } from 'react';
 import logo from '../../assets/images/logo.svg';
-import { AtomProductContext } from '../../provider/AtomProductProvider';
 import styles from './styles.module.css';
+import { useAtomProducts } from '../../hooks/useAtomProducts';
 
 function Atom() {
+  const { categories, isLoading, error, activeCategory, toggleCategory } =
+    useAtomProducts();
+
   return (
     <div className={styles.wrapper}>
       <Header />
-      <Body />
+      <Body
+        categories={categories}
+        isLoading={isLoading}
+        error={error}
+        activeCategory={activeCategory}
+        toggleCategory={toggleCategory}
+      />
       <Footer />
     </div>
   );
@@ -37,7 +45,20 @@ function Header() {
   );
 }
 
-function Body() {
+function Body({
+  categories,
+  isLoading,
+  error,
+  activeCategory,
+  toggleCategory,
+}: {
+  categories: any;
+  isLoading: boolean;
+  error: any;
+  activeCategory: string | null;
+  toggleCategory: (category: string) => void;
+}) {
+  console.log(categories);
   const estateButtonData = {
     label: 'Estate',
     style: styles.sideBarButton,
@@ -69,11 +90,6 @@ function Body() {
     subText: 'General',
   };
 
-  const context = useContext(AtomProductContext);
-  const categories = context?.categories ?? [];
-  const isLoading = context?.isLoading ?? false;
-  const error = context?.error ?? null;
-
   return (
     <div className={styles.bodyContainer}>
       <div className={styles.sideBarContainer}>
@@ -86,14 +102,15 @@ function Body() {
             {isLoading && <div>Loading...</div>}
             {error && <div style={{ color: 'red' }}>{error}</div>}
             {!isLoading &&
-              categories.map(cat => (
+              // UseMemo so that we don't need to render 24 things all the time.
+              categories.map((cat: any) => (
                 <label key={cat} className={styles.categoryItem}>
                   <input
                     type="checkbox"
                     value={cat}
                     id={cat}
-                    checked={context?.activeCategory === cat}
-                    onChange={() => context?.toggleCategory(cat)}
+                    checked={activeCategory === cat}
+                    onChange={() => toggleCategory(cat)}
                   />
                   {cat}
                 </label>
