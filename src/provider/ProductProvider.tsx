@@ -14,7 +14,7 @@ interface ProductProviderProps {
 
 export const ProductProvider = ({
   children,
-  defaultCategory = 'mobile',
+  defaultCategory = 'beauty',
 }: ProductProviderProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
