@@ -1,8 +1,8 @@
 import logo from '../../assets/images/logo.svg';
-import styles from './styles.module.css';
 import { useAtomProducts } from '../../hooks/useAtomProducts';
 import { AtomProduct } from '../../types/atomProduct';
 import { makeProductCard } from './components/product/product';
+import styles from './styles.module.css';
 
 function Atom() {
   const {
@@ -62,9 +62,9 @@ function Body({
   toggleCategory,
   products,
 }: {
-  categories: any;
+  categories: string[];
   isLoading: boolean;
-  error: any;
+  error: string | null;
   activeCategory: string | null;
   toggleCategory: (category: string) => void;
   products: AtomProduct[];
@@ -113,7 +113,7 @@ function Body({
             {error && <div style={{ color: 'red' }}>{error}</div>}
             {!isLoading &&
               // UseMemo so that we don't need to render 24 things all the time.
-              categories.map((cat: any) => (
+              categories.map((cat: string) => (
                 <label key={cat} className={styles.categoryItem}>
                   <input
                     type="checkbox"
@@ -133,7 +133,7 @@ function Body({
           <div>No products found</div>
         ) : (
           <div className={styles.productGrid}>
-            {products.map((product: any) => makeProductCard(product))}
+            {products.map((product: AtomProduct) => makeProductCard(product))}
           </div>
         )}
       </div>
@@ -160,9 +160,7 @@ function makeButton(data: {
     <button
       className={data.style}
       onClick={() => {
-        data.onClick
-          ? data.onClick()
-          : console.log(`${data.label} button clicked`);
+        data.onClick && data.onClick();
       }}
     >
       {data.image && (
