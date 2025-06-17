@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import { AtomProductProvider } from './provider/AtomProductProvider';
 import { AuthProvider } from './provider/AuthProvider';
+import { MikeProductProvider } from './provider/MikeProductProvider';
 import { ThemeProvider } from './provider/ThemeProvider';
 import reportWebVitals from './reportWebVitals';
 
@@ -14,7 +16,11 @@ root.render(
     <BrowserRouter>
       <ThemeProvider>
         <AuthProvider>
-          <App />
+          <MikeProductProvider>
+            <AtomProductProvider>
+              <App />
+            </AtomProductProvider>
+          </MikeProductProvider>
         </AuthProvider>
       </ThemeProvider>
     </BrowserRouter>
