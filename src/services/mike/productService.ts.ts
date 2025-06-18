@@ -2,7 +2,7 @@ const API_BASE_URL = 'https://dummyjson.com';
 const CATEGORY_LIST = 'products/category-list';
 const CATEGORY = 'products/category';
 
-class ProductionService {
+class MikeProductService {
   async getProductsByCategory(name: string): Promise<any[]> {
     try {
       const response = await fetch(`${API_BASE_URL}/${CATEGORY}/${name}`, {
@@ -48,4 +48,4 @@ class ProductionService {
   }
 }
 
-export const productionService = new ProductionService();
+export const mikeProductService = new MikeProductService();

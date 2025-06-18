@@ -1,13 +1,28 @@
+import { CircularProgress, Typography } from '@mui/material';
 import logo from '../../assets/images/logo.svg';
+import CategorySidebar from '../../components/Mike/CategorySidebar';
+import { useMikeProducts } from '../../hooks/useMikeProducts';
 import styles from './styles.module.css';
 
-/**
- * TODO:
- * 1. Ref: https://kankocho.jp/ from this website, create a similar page (focus on left sidebar behavior on Big and Small screen)
- * 2. Create a any sub component for this page inside src/components/Mike/* folder
- * 3. Add new/update any css module file inside src/components/Mike/styles.module.css
- */
 function Mike() {
+  const {
+    categories,
+    selectedCategory,
+    isMikeProductLoading,
+    handleSelectedCategory,
+  } = useMikeProducts();
+
+  if (isMikeProductLoading) {
+    return (
+      <div className={styles.loadingContainer}>
+        <CircularProgress size={60} />
+        <Typography variant="h6" sx={{ ml: 2 }}>
+          Loading categories...
+        </Typography>
+      </div>
+    );
+  }
+
   return (
     <div>
       <section className={styles.wrapper}>
@@ -40,7 +55,7 @@ function Mike() {
         {/* Body */}
         <div className={styles.body}>
           <div className={styles.sideBar}>
-            {/** Button 1 */}
+            {/* Button 1 */}
             <button className={styles.sideBarButtonContainer}>
               <img src={logo} className={styles.estateLogo} alt="Logo" />
               <div className={styles.estateContentContainer}>
@@ -49,7 +64,7 @@ function Mike() {
               </div>
             </button>
 
-            {/** Button 2 */}
+            {/* Button 2 */}
             <button className={styles.sideBarButtonContainer}>
               <img src={logo} className={styles.estateLogo} alt="Logo" />
               <div className={styles.estateContentContainer}>
@@ -58,16 +73,34 @@ function Mike() {
               </div>
             </button>
 
-            {/** Button 3 */}
-            <button className={styles.sideBarButtonContainer}>
-              <img src={logo} className={styles.estateLogo} alt="Logo" />
-              <div className={styles.estateContentContainer}>
-                <div className={styles.estateTitle}>不動産検索</div>
-                <div className={styles.estateSubTitle}>259件 </div>
-              </div>
-            </button>
+            {/* Category Selector */}
+            <CategorySidebar
+              categories={categories}
+              selectedCategory={selectedCategory}
+              onCategoryChange={handleSelectedCategory}
+              isLoading={isMikeProductLoading}
+            />
           </div>
-          <div className={styles.bodyContainer}>Body 2</div>
+          <div className={styles.bodyContainer}>
+            {selectedCategory ? (
+              <div>
+                <Typography variant="h4" gutterBottom>
+                  {selectedCategory.replace(/-/g, ' ')} Products
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  sx={{ mb: 3 }}
+                >
+                  Products in the {selectedCategory.replace(/-/g, ' ')} category
+                </Typography>
+              </div>
+            ) : (
+              <Typography variant="h6" color="text.secondary">
+                Please select a category from the sidebar
+              </Typography>
+            )}
+          </div>
         </div>
         <div
           style={{

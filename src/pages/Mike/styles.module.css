@@ -70,7 +70,7 @@
     align-items: center;
     padding: 8px;
     gap: 10px;
-    background-color: blue;
+    /* background-color: blue; */
   }
 
   .logoContainer {
